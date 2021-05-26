@@ -1,3 +1,10 @@
+# Dependencies
+functions/node_modules
+functions/package-lock.json
+
+# Firebase congif
+functions/util/config.js
+
 # Build and Release Folders
 bin-debug/
 bin-release/
@@ -17,7 +24,3 @@ bin-release/
 # should NOT be excluded as they contain compiler settings and other important
 # information for Eclipse / Flash Builder.
 
-#Dependencies
-functions/node_modules
-functions/util/config.js
-functions/package-lock.json
