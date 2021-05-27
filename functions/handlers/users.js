@@ -18,6 +18,8 @@ exports.signup = (req, res) => {
     const { valid, errors } = validateSignupData(newUser);
 
     if(!valid) return res.status(400).json(errors);
+
+    const noImg = 'no-img.png';
   
     let token, userId;
   
@@ -42,6 +44,7 @@ exports.signup = (req, res) => {
           handle: newUser.handle,
           email: newUser.email,
           createdAt: new Date().toISOString(),
+          imageUrl: `https://firebasestorage.googleapis.com/v0/b/${config.storageBucket}/o/${noImg}?alt=media`,
           userId
         };
         return db.doc(`/users/${newUser.handle}`).set(userCredentials);
@@ -98,13 +101,16 @@ exports.signup = (req, res) => {
     let imageFileName;
     let imageToBeUploaded = {};
 
-    busboy.on('file', (fieldname, file, filename, encofing, mimetype) => {
-      
+    busboy.on('file', (fieldname, file, filename, encoding, mimetype) => {
+      if(mimetype !== 'image/jepg' && mimetype !== 'image/png') {
+        return res.status(400).json({ error: 'Wrong file type submitted'});
+      }
       // my.image.png
       const imageExtension = filename.split('.')[filename.split('.').length -1];
+
       // 6590349904390349004939.png
       imageFileName = `${Math.round(Math.random()*100000000000)}.${imageExtension}`;
-      const filepath = path.join(os.tmpdir(), imageFileName);
+      const filepath = path.join(os.tmpdir(), imageFileName); 
       imageToBeUploaded = { filepath, mimetype };
       file.pipe(fs.createWriteStream(filepath));
     });
@@ -127,7 +133,7 @@ exports.signup = (req, res) => {
       .catch(err => {
         console.error(err);
         return res.status(500).json({ error: err.code });
-      })
-
-    })
+      });
+    });
+    busboy.end(req.rawBody);
   };

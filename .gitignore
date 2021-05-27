@@ -5,6 +5,10 @@ functions/package-lock.json
 # Firebase congif
 functions/util/config.js
 
+# Logs
+functions/firebase-debug.log
+
+
 # Build and Release Folders
 bin-debug/
 bin-release/

@@ -35,7 +35,7 @@ const isEmail = (email) => {
     }
   };
 
-  exports.calidateLoginData = (data) => {
+  exports.validateLoginData = (data) => {
     let errors = {};
     
     if(isEmpty(data.email)) errors.email = 'Must not be empty';
