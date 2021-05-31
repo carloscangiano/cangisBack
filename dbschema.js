@@ -19,20 +19,28 @@ let db = {
             likeCount: 5,
             commentCount: 3
         }
+    ],
+    comments: [
+        {
+            userHandle: 'user',
+            screamId: 'klsdjflksdf2ksdjflsd',
+            body: 'Nice one mate!',
+            createdAt: '2021-05-27T01:49:14.867Z'
+        }
     ]
 };
 
 const userDetails = {
     // Redux data
     credential: {
-        userId: "gRcJreLvOvVNph6NRdbPAYBx00a2",
-        email: "tom7@gmail.com",
-        handle: "tom7",
-        createdAt: "2021-05-27T01:49:14.867Z",
-        imageUrl: "https://google.com",
-        bio: "hello bio",
-        website: "http://cangis.com",
-        location: "CBA, AR"
+        userId: 'gRcJreLvOvVNph6NRdbPAYBx00a2',
+        email: 'tom7@gmail.com',
+        handle: 'tom7',
+        createdAt: '2021-05-27T01:49:14.867Z',
+        imageUrl: 'https://google.com',
+        bio: 'hello bio',
+        website: 'http://cangis.com',
+        location: 'CBA, AR'
     },
     likes: [
         {
