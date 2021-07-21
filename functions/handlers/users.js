@@ -209,7 +209,7 @@ exports.signup = (req, res) => {
     let imageToBeUploaded = {};
 
     busboy.on('file', (fieldname, file, filename, encoding, mimetype) => {
-      if(mimetype !== 'image/jepg' && mimetype !== 'image/png') {
+      if(mimetype !== 'image/jpeg' && mimetype !== 'image/JPEG' && mimetype !== 'image/jpg' && mimetype !== 'image/png') {
         return res.status(400).json({ error: 'Wrong file type submitted'});
       }
       // my.image.png
